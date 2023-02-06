@@ -162,32 +162,32 @@ def HIBT_scrap(img_path):
         #     button.click()
 
 
-HIBT_scrap(r"C:\Users\yhunkim\Desktop\capture\hibt_img\gray.jpeg")
-# if __name__ == "__main__":
-    
-#     ## hibt image 폴더
-#     file_list = os.listdir("hibt_img")
 
-#     ## abspath = 현재 작업 디렉토리에 상대적인 절대 경로
-#     os.chdir("hibt_img") # .\\capture\\hibt_img\\gray.jpeg
-#     abs_file = [os.path.abspath(f) for f in file_list] # \ => \\, .\\capture\\gray.jpeg
-
-#     ## 상위 폴더 이동
-#     os.chdir("..")
+if __name__ == "__main__":
     
-#     s_time = time.time()
-#     # cpu_cnt = os.cpu_count() ## 최대 12개
-#     pool = Pool(processes=4) 
-#     pool.map(HIBT_scrap, abs_file)
-#     print("--- %s seconds ---" % (time.time() - s_time))
+    ## 작업 폴더
+    file_list = os.listdir("작업 폴더")
+
+    ## abspath = 현재 작업 디렉토리에 상대적인 절대 경로
+    '''
+    f = os.listdir("작업 폴더")
+    print([os.path.abspath(i) for i in f]) = C:\\Users\\yhunkim\\Desktop\\capture\\detail.jpeg
+    os.chdir("작업 폴더")
+    print([os.path.abspath(i) for i in f]) = C:\\Users\\yhunkim\\Desktop\\capture\\hibt_img\\detail.jpeg
+    '''
+    os.chdir("작업 폴더")
+    abs_file = [os.path.abspath(f) for f in file_list] # \ => \\
+
+    ## 상위 폴더 이동
+    os.chdir("..")
+    
+    s_time = time.time()
+    cpu_cnt = os.cpu_count() ## 최대 12개
+    pool = Pool(processes=cpu_cnt) 
+    pool.map(HIBT_scrap, abs_file)
+    print("--- %s seconds ---" % (time.time() - s_time))
 
 '''
 1. hibt에 적용할 폴더 생성 및 관련 이미지 첨부
 2. run
-//*[@id="root"]/div/main/div/div[3]/div[257]/img
-/html/body/div[1]/div/main/div/div[3]/div[257]/img
-//*[@id="root"]/div/main/div/div[3]/div[228]/img
-/html/body/div[1]/div/main/div/div[3]/div[228]/img
-
-
 '''
