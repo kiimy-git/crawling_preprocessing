@@ -121,13 +121,13 @@ def HIBT_scrap(img_path):
                 driver.implicitly_wait(30)
 
 
-            ## element click intercepted: Element => driver.execute_script("arguments[0].click();", images[index]) / 이유 알 수 없음
+            ## element click intercepted: Element = 이미지 클릭할 수 없음
             except Exception as e:
                 print(e)
                 try:
                     while index < img_cnt:
                         ## Message: stale element reference: element is not attached to the page document
-                        # =  웹페이지가 너무 빨리 넘어가면 error 발생
+                        # 웹페이지가 너무 빨리 넘어가면 error 발생 => time.sleep() 적용
                         
                         ## 이미지를 클릭할 수 없을때
                         img_url = driver.find_element(By.XPATH, 
