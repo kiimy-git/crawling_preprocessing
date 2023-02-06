@@ -14,8 +14,10 @@ import time
 from makedir import make_dir
 from multiprocessing import Pool
 from mediapipe_face import face_detect, url_to_image
+import ssl
 
-urllib3.disable_warnings()
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+ssl._create_default_https_context = ssl._create_unverified_context
 
 ## ID 다음에 html 소스가 없으면 동적 == selenium 이용
 ## 정적인 페이지 == BeautifulSoup
@@ -97,7 +99,7 @@ def google_crawling(search):
     # search = "한국 여성 영화"
     element = driver.find_element(By.NAME, "q")
     element.send_keys(search)
-    element.send_keys(Keys.RETURN)
+    element.send_keys(Keys.RETURN) ## Enter
     
     ## 구글 이미지 검색이 스크롤을 내리면 계속 새로운 스크롤이 갱신됨
     scroll_time = 1
@@ -180,8 +182,8 @@ def google_crawling(search):
 "여고 단체사진"
 ]
 '''
-## "여성 의류" == ???
-key_word = ["여성 의류", "여성 원피스"]
+
+key_word = ["여성 피부", "여성 패션"]
 
 ## print(multiprocessing.cpu_count())
 ## with Pool(processes=cpu_cnt) as pool:
@@ -197,29 +199,17 @@ if __name__ == "__main__":
     pool = Pool(processes=8)
     pool.map(google_crawling, key_word)
     print("--- %s seconds ---" % (time.time() - s_time))
-
-
+    
+    
 '''
-## multiprocess
-* map() - iterable에 대해 동일한 함수를 멀티프로세싱을 이용하여 처리하고자 할 때 사용한다. 단, 사용하고자 하는 함수는 단일 인자를 받아야 한다.
-= map의 결과물은 list
-
-* apply() - Pool에게 작업 하나를 시킨다. 그리고 작업이 끝날 때까지 기다렸다가 결과를 받는다.
-= pool.apply(func, func인자값)
-
-* starmap() - 인자를 두 개 이상 받을 수 있다
-= pool.starmap(func, zip(func인자값, func인자값)= 둘다 iterable )
-
-* imap() - 결과물의 길이가 길어서 list로 나타내었을 때 메모리에 부담이 가는 경우 imap을 사용해주면 좋다
-= imap의 결과물은 iterator
-
------ iterator / iterable ----
-iterator - for 문이 이터러블을 받으면 이터러블의 __iter__()를 호출
-iterable - 반복가능한 객체(list, dict, tuple...)
-
-iterable은 순회를 당할 수 있는 객체
-iterator은 iterable의 순회를 주관
-
-
-* 대용량 데이터 불러올때 사용 - chunksize 
+1. 작업 폴더 생성
+2. 키워드 설정(= 여러개 가능)
+ - 작업 폴더 안에 scraping_folder 자동생성, 키워드 폴더 자동생성
+ - 얼굴 인식한 이미지만 추출(= 그림, 얼굴 잘린 이미지도 인식)
+3. 추출 이미지 검수
+4. GFPGAN - colab에서 적용 후 검수(= 잘 못 생성된 이미지 제거 필요)
+5. remove_img.py - cmp, restored 폴더에서 삭제
+6. excel_file.py
+ - excel_sheet 폴더 자동생성
+ - 해당 폴더에 excel 파일 저장
 '''

@@ -6,6 +6,7 @@ import os
 import re
 from PIL import Image as Img
 from io import BytesIO
+from makedir import make_dir
 
 wb = Workbook()
 ws = wb.active
@@ -95,18 +96,14 @@ def korean_path(path, img):
 ## 경로 == r + "path"
 def to_excel(true_folder, cmp_folder, res_folder, save_name):
     
+    make_dir("excel_sheet")
+    
     ## 이미지 불러오기
     true_list = os.listdir(true_folder)
     cmp_list = os.listdir(cmp_folder)
     
     ## GFPGAN 추출, 미추출 확인
     t_img, f_img = img_match(true_folder, true_list, cmp_list)
-    
-    ## 숫자 정렬
-    # t_image = sorted(t_img, reverse=False, key=digit_sort)
-    # cmp_list = sorted(cmp_list, reverse=False, key=digit_sort) 
-    # res_list = sorted(res_list, reverse=False, key=digit_sort) 
-    # f_image = sorted(f_img, reverse=False, key=digit_sort) 
 
     ## cell 시작 위치
     start_row = 2
@@ -200,46 +197,10 @@ def to_excel(true_folder, cmp_folder, res_folder, save_name):
     #     ## 파일명 변경 후 파일 디렉토리로 이동
     #     os.rename(img_file, f"false_image\\{true_folder}_{f_img[m]}")
 
-## Gender_detect 적용이후 폴더(=Female 폴더 적용)
-to_excel(r"scraping_folder\한국 여성 쇼핑몰 모델",
-        r"compare\한국여성쇼핑몰모델cmp\cmp",
-        r"compare\한국여성쇼핑몰모델restored\restored_faces",
-        "한국여성쇼핑몰모델")
-'''
-## 현재 폴더 경로; 작업 폴더 기준
-print(os.getcwd())
 
-## 현재 파일의 폴더 경로; 작업 파일 기준
-print(os.path.dirname(os.path.realpath(__file__)))
-
-## 작업 디렉토리 변경
-path = 'C:/Users/user/Desktop/folder/'
-os.chdir(path)
-
-## 작업 파일 변경
-os.rename('path\\filename.txt', 'path\\new_filename.txt')
-
-## 이동하려는 목적지에 상위 디렉토리를 만들려면
-os.renames('path\\filename.txt', 'path\\new_filename.txt')
-
-## false_image 디렉토리에 똑같은 이름 있을때
-if os.path.exists(f"false_image\\{f_img[m]}"):
-
-## 파일 탐색(하위)
-os.walk(top, topdown=True, onerror=None, followlinks=False) / bottom-up, topdown=False
-==> root, dirs, files
-os.fwalk(top='.', topdown=True, onerror=None, *, follow_symlinks=False, dir_fd=None)
-
-## 현재 폴더 파일(= 확장자별 리스트)
-glob("*.jpg") <-> os.listdir()
-'''
-
-#### ---------------------------------------- ####
-## 실행 순서
-# 1. web_sraping
-# 2. 추출 이미지 확인 - 필요없는 이미지 삭제
-# 3. GFPGAN 적용
-# 4. Gender 적용 or 직접 확인 후 cmp, restored 폴더에서 삭제
-# 5. to_excel - 미추출 이미지 확인 및 copy 후 false_image 디렉토리로 이동
-# 6. 이미지 확인 및 삭제, to_excel
+## to_excel(스크래핑 폴더 경로, GFPGAN CMP 경로, GFPGAN restored 경로, 저장할 폴더명)
+to_excel(r"scraping_folder\여성 의류",
+        r"compare\여성의류cmp\cmp",
+        r"compare\여성의류restored\restored_faces",
+        "여성의류")
     

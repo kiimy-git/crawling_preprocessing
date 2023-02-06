@@ -50,3 +50,4 @@ def face_detect(url_image):
 
         ## 탐지 못하면 무시하고 진행
         return res.detections
+    
