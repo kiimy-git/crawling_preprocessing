@@ -199,8 +199,8 @@ def to_excel(true_folder, cmp_folder, res_folder, save_name):
 
 
 ## to_excel(스크래핑 폴더 경로, GFPGAN CMP 경로, GFPGAN restored 경로, 저장할 폴더명)
-to_excel(r"scraping_folder\여성 의류",
-        r"compare\여성의류cmp\cmp",
-        r"compare\여성의류restored\restored_faces",
-        "여성의류")
+to_excel(r"scraping_folder\여고 단체사진",
+        r"compare\여고단체사진cmp\cmp",
+        r"compare\여고단체사진restored\restored_faces",
+        "여고단체사진")
     

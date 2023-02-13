@@ -82,13 +82,8 @@ np.set_printoptions(threshold=1000)
 
 # print(pprint(classes))
 
-f = os.listdir("hibt_img")
-s = []
-s1 = []
-for i in f:
-    
-    s.append(rf"{os.path.abspath(i)}") 
-    s1.append(os.path.abspath(i))
-print(s)
-print(s1)
-print([os.path.abspath(i) for i in f])
+
+
+
+summary = []
+print("asd:asddd")

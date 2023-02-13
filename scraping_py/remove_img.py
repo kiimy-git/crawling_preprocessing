@@ -4,7 +4,7 @@ import re
 
 ## GFPGAN으로 생성된 이미지 파일로부터 
 
-remove_list = "11_02 13_00 2_01 67_00 69_00"   
+remove_list = ""   
  
 def to_list(remove_list):
     new_list = remove_list.split(" ")
@@ -27,8 +27,5 @@ def remove_img_func(remove_list, cmp_path, restored_path):
             os.remove(f'{restored_path}\\{r}')
 
 remove_img_func(remove_list, 
-                r"compare\여성의류cmp\cmp",
-                r"compare\여성의류restored\restored_faces")
-# print(to_list(remove_list))
-
-# os.rename('filename.txt', 'new_filename.txt')
+                r"compare\여고단체사진cmp\cmp",
+                r"compare\여고단체사진restored\restored_faces")

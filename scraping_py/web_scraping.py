@@ -102,7 +102,7 @@ def google_crawling(search):
     element.send_keys(Keys.RETURN) ## Enter
     
     ## 구글 이미지 검색이 스크롤을 내리면 계속 새로운 스크롤이 갱신됨
-    scroll_time = 1
+    scroll_time = 2
 
     ## execute_script("스크립트", 요소) - 해당 페이지에 스크립트를 만들때 사용
     # 요소는 필수 파라미터는 아니고 요소가 있으면 요소에 스크립트가 실행되고 없으면 전체 페이지에 스크립트가 움직입니다.
@@ -140,11 +140,12 @@ def google_crawling(search):
         try:
             ## 해당 이미지 클릭 == 원본 이미지
             img.click()
-            time.sleep(2)
-
+            
+            ## -----Error 확인----- ##
+            driver.implicitly_wait(30)
             img_url = driver.find_element(By.XPATH, 
                                         "//*[@id='Sva75c']/div[2]/div/div[2]/div[2]/div[2]/c-wiz/div[2]/div[1]/div[1]/div[2]/div/a/img").get_attribute('src')
-
+            
             ## 이미지 얼굴 인식
             convert_img = url_to_image(img_url)
             
@@ -182,12 +183,9 @@ def google_crawling(search):
 "여고 단체사진"
 ]
 '''
-
-key_word = ["여성 피부", "여성 패션"]
-
-## print(multiprocessing.cpu_count())
-## with Pool(processes=cpu_cnt) as pool:
-##     pool.map(func, iterable)
+# "여성 피부", "여성 패션"
+## 가수 / 배우
+key_word = ["김태희", "아이유"]
 
 def mp_pool(f, cpu_cnt, key_word):
     pool = Pool(processes=cpu_cnt)
@@ -196,7 +194,8 @@ def mp_pool(f, cpu_cnt, key_word):
     
 if __name__ == "__main__":
     s_time = time.time()
-    pool = Pool(processes=8)
+    cpu_cnt = os.cpu_count() ## 최대 12개
+    pool = Pool(processes=cpu_cnt)
     pool.map(google_crawling, key_word)
     print("--- %s seconds ---" % (time.time() - s_time))
     
