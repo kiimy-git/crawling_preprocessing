@@ -183,9 +183,9 @@ def google_crawling(search):
 "여고 단체사진"
 ]
 '''
-# "여성 피부", "여성 패션"
+# "여성 피부", "여성 패션" "광고"
 ## 가수 / 배우
-key_word = ["김태희", "아이유"]
+key_word = []
 
 def mp_pool(f, cpu_cnt, key_word):
     pool = Pool(processes=cpu_cnt)

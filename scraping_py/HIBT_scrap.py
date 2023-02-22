@@ -169,36 +169,36 @@ print([os.path.abspath(i) for i in f]) = C:\\Users\\yhunkim\\Desktop\\capture\\d
 os.chdir("작업 폴더")
 print([os.path.abspath(i) for i in f]) = C:\\Users\\yhunkim\\Desktop\\capture\\hibt_img\\detail.jpeg
 '''
-HIBT_scrap(r"C:\Users\yhunkim\Desktop\capture\hibt_img\민효린.jpg")
-# if __name__ == "__main__":
+
+if __name__ == "__main__":
     
-#     ## hibt image 폴더
-#     file_list = os.listdir("hibt_img")
+    ## hibt image 폴더
+    file_list = os.listdir("hibt_img")
 
-#     ## abspath = 현재 작업 디렉토리에 상대적인 절대 경로
-#     os.chdir("hibt_img") 
-#     abs_file = [os.path.abspath(f) for f in file_list] # \ => \\
-#     file_cnt = len(abs_file)
+    ## abspath = 현재 작업 디렉토리에 상대적인 절대 경로
+    os.chdir("hibt_img") 
+    abs_file = [os.path.abspath(f) for f in file_list] # \ => \\
+    file_cnt = len(abs_file)
 
-#     ## 상위 폴더 이동
-#     os.chdir("..")
+    ## 상위 폴더 이동
+    os.chdir("..")
 
-#     s_time = time.time()
-#     cpu_cnt = os.cpu_count() 
+    s_time = time.time()
+    cpu_cnt = os.cpu_count() 
 
-#     ## 너무 많은 프로세스를 사용하게 되면 CPU에 부담이 됨 == 대략적으로 자신의 CPU core 수에 *2 정도가 최대
-#     ## 빨간줄 == 무시해도됨 / 이유는 알 수 없음
-#     if file_cnt < (cpu_cnt*2):
-#         pool = Pool(processes=file_cnt) 
-#         pool.map(HIBT_scrap, abs_file)
-#         print("--- %s seconds ---" % (time.time() - s_time))
+    ## 너무 많은 프로세스를 사용하게 되면 CPU에 부담이 됨 == 대략적으로 자신의 CPU core 수에 *2 정도가 최대
+    ## 빨간줄 == 무시해도됨 / 이유는 알 수 없음
+    if file_cnt < (cpu_cnt*2):
+        pool = Pool(processes=file_cnt) 
+        pool.map(HIBT_scrap, abs_file)
+        print("--- %s seconds ---" % (time.time() - s_time))
         
-#     else:
-#         print("스크래핑 이미지 개수 줄이기 / cpu core수 보다 많음")
-#         ## 강제 종료
-#         exit_code()
+    else:
+        print("스크래핑 이미지 개수 줄이기 / cpu core수 보다 많음")
+        ## 강제 종료
+        exit_code()
 '''
 1. hibt에 적용할 폴더 생성(=hibt_img) 및 관련 이미지 첨부
 2. run
-민효린, 안지영, 강민경 error
+민효린, 안지영, 강민경 error why??
 '''

@@ -38,8 +38,7 @@ def chat(prompt):
     return completion
 
 models = openai.Model.list()
-for i in models:
-    print(i)
+
 # if __name__ == '__main__':
 #     prompt = ""
 #     response = chat(prompt=prompt)
