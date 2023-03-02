@@ -224,30 +224,6 @@ def scrap_mulitprocessing(search_name, debug_port):
     driver.find_element(By.XPATH, '//*[@id="appMountPoint"]/div/div/div[1]/div[2]/div/div[1]/div[4]/div').click()
 
 
-series = [
-    "터닝포인트",
-    "크라임씬",
-    "휴먼",
-    "킬러샐리",
-    "타일러헨리",
-    "헤드스페이스숙면이필요할때",
-    "마음을바꾸는방법",
-    "F1본능의질주"
-]
-
-debug_ports = [
-    9222,
-    9223,
-    9224,
-    9225,
-    9226,
-    9227,
-    9228,
-    9229
-    
-]
-
-
 # if __name__ == "__main__":
 #     s_time = time.time()
 #     cpu_cnt = os.cpu_count() ## 최대 12개
