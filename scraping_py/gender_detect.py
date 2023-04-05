@@ -3,6 +3,7 @@ import argparse
 import os
 import shutil
 
+## Gender Detect 성능 떨어짐 = 사용 X
 
 parser=argparse.ArgumentParser()
 parser.add_argument('--image')
