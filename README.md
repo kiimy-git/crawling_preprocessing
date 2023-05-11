@@ -9,19 +9,23 @@
 6. 한 이미지에 여러명 있을 수 있음(남자, 여자 얼굴 다 인식)
 
 
-### Google scraping
+### Google Crawling
 1. 특정 키워드(= 키워드를 명확하게 전달)를 통해 이미지를 가져올 수 있음(가수 ???, 배우 ???)
 2. 중복 이미지 확인 불가
 3. Mediapipe API(Face Detection)를 사용, 그림 이미지도 가져올 수 있음
 
 
-### HIBT scraping
+### HIBT Crawling
 1. Text or Image와 유사한 이미지들 검색(= 중복 제외, 간혹 있음)
 2. 개수가 많지 않음
 3. NSFW(=Not safe for work, 후방주의?) filter를 사용했다지만 불법 컨텐츠 이미지도 가져올 수 있음(= 일반인 이미지 적용 X)
 4. 이미지로 찾을 경우 비슷한 느낌의 이미지도 추가로 가져옴(= 다른 사람의 이미지도 가져옴)
 
-[crawling 코드](scraping_py/netflix)
+[Crawling 코드](scraping_py/netflix)
+[HIBT Crawling]
+[harr_cascade얼굴인식]
+[Gender_detect]
+[Mediapipe_api]
 
 # Data Preprocessing / Automation
 [이미지_전처리](scraping_py/image_processing)
