@@ -22,10 +22,8 @@
 4. 이미지로 찾을 경우 비슷한 느낌의 이미지도 추가로 가져옴(= 다른 사람의 이미지도 가져옴)
 
 [Crawling 코드](scraping_py/netflix)
-[HIBT Crawling]
-[harr_cascade얼굴인식]
-[Gender_detect]
-[Mediapipe_api]
+[사용한 라이브러리 및 API](scraping_py/useful_code)
+
 
 # Data Preprocessing / Automation
 [이미지_전처리](scraping_py/image_processing)
