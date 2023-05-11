@@ -33,5 +33,7 @@
 
 # Data Preprocessing / Automation
 [이미지_전처리](scraping_py/image_processing)
+
 [텍스트_전처리](scraping_py/data_preprocess)
+
 [엑셀화](scraping_py/make_excel)
