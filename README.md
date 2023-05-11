@@ -21,4 +21,9 @@
 3. NSFW(=Not safe for work, 후방주의?) filter를 사용했다지만 불법 컨텐츠 이미지도 가져올 수 있음(= 일반인 이미지 적용 X)
 4. 이미지로 찾을 경우 비슷한 느낌의 이미지도 추가로 가져옴(= 다른 사람의 이미지도 가져옴)
 
+[crawling 코드](scraping_py/netflix)
+
 # Data Preprocessing / Automation
+[이미지_전처리](scraping_py/image_processing)
+[텍스트_전처리](scraping_py/data_preprocess)
+[엑셀화](scraping_py/make_excel)
