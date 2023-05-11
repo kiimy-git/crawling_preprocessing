@@ -22,6 +22,7 @@
 4. 이미지로 찾을 경우 비슷한 느낌의 이미지도 추가로 가져옴(= 다른 사람의 이미지도 가져옴)
 
 [Crawling 코드](scraping_py/netflix)
+
 [사용한 라이브러리 및 API](scraping_py/useful_code)
 
 
