@@ -2,6 +2,21 @@ import ctypes
 import sys
 import os
 
+# GPU 사용 가능 여부 확인 tensorflow
+def tf_gpu():
+    import tensorflow as tf
+    gpus = tf.config.list_physical_devices('GPU')
+    if gpus:
+      try:
+        # GPU 사용 설정
+        for gpu in gpus:
+
+          print(gpu)
+          tf.config.experimental.set_memory_growth(gpu, True)
+        tf.config.experimental.set_visible_devices(gpus[0], 'GPU')
+      except RuntimeError as e:
+        print(e)
+
 def test_cuda_and_cudnn():
     # Check for GPU
     try:
