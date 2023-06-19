@@ -33,7 +33,7 @@
 
 
 # Data Preprocessing / Automation
-[이미지_전처리](scraping_py/image_processing)
+[이미지_전처리](scraping_py/image_preprocess)
 
 [텍스트_전처리](scraping_py/data_preprocess)
 
