@@ -9,18 +9,19 @@ import pandas as pd
 from PIL import Image
 import cv2 as cv
 
-red = (0,0,255)
-## 폴더 image 파일만 
-
 ## 드래그 활성
 isclick = False
 x1, y1 = -1, -1
 
-face = r'C:\Users\yhunkim\Desktop\cropped\face'
-upper = r'C:\Users\yhunkim\Desktop\cropped\upper'
-body = r'C:\Users\yhunkim\Desktop\cropped\body'
+## 드래그 box 색
+red = (0,0,255)
 
-folders = [face, upper, body]
+## 이미지 저장
+def img_save(roi, folder_name, img_name):
+    print(f"crop shape : {roi.shape}")
+    cv.imshow('cropped', roi)
+    cv.imwrite(f'{folder_name}\\{img_name}.png', roi)
+    print("--------------이미지 저장--------------")
 
 ## 마우스 이벤트 처리 함수
 def drag_img(event, x, y, flags, param):
@@ -64,23 +65,13 @@ def drag_img(event, x, y, flags, param):
                     if w > (height - y1):
                         y1 -= (w - (height - y1))
                         roi = img[y1:y1+w, x1:x1+w]
-                        
-                        
-                        print(f"crop shape : {roi.shape}")
-                        cv.imshow('cropped', roi)
-                        cv.imwrite(f'{folder_name}\\{img_name}.png', roi)
-                        print("--------------이미지 저장--------------")
+                        img_save(roi, folder_name, img_name)
                         
                         
                     else:
                         h = w
                         roi = img[y1:y1+h, x1:x1+w]
-                        
-                        
-                        print(f"crop shape : {roi.shape}")
-                        cv.imshow('cropped', roi)
-                        cv.imwrite(f'{folder_name}\\{img_name}.png', roi)
-                        print("--------------이미지 저장--------------")
+                        img_save(roi, folder_name, img_name)
                         
                 
                 ## 케릭터가 왼쪽, 오른쪽 끝에 있을 수 있음
@@ -104,20 +95,13 @@ def drag_img(event, x, y, flags, param):
                         if p_x2 > width:
                             p1 = p_x2 - width
                             roi = img[y1:y1+h, int(p_x1-p1):width]
-                            print(f"crop shape : {roi.shape}")
-                            cv.imshow('cropped', roi)
-                            cv.imwrite(f'{folder_name}\\{img_name}.png', roi)
-                            print("--------------이미지 저장--------------")
+                            img_save(roi, folder_name, img_name)
                             
                         else:
                         # x1 -= (h - (width - x1))
                         # roi = img[y1:y1+h, x1:x1+h]
                             roi = img[y1:y1+h, int(p_x1):int(p_x2)]
-                        
-                            print(f"crop shape : {roi.shape}")
-                            cv.imshow('cropped', roi)
-                            cv.imwrite(f'{folder_name}\\{img_name}.png', roi)
-                            print("--------------이미지 저장--------------")
+                            img_save(roi, folder_name, img_name)
                         
                         
                     ## 케릭터가 왼쪽에 있을때,
@@ -128,18 +112,11 @@ def drag_img(event, x, y, flags, param):
                         if p_x1 < 0:
                             p1 = abs(p_x1)
                             roi = img[y1:y1+h, 0:int(p_x2+p1)]
-                            print(f"crop shape : {roi.shape}")
-                            cv.imshow('cropped', roi)
-                            cv.imwrite(f'{folder_name}\\{img_name}.png', roi)
-                            print("--------------이미지 저장--------------")
-                        # roi = img[y1:y1+h, x1:x1+h]
+                            img_save(roi, folder_name, img_name)
+
                         else:
                             roi = img[y1:y1+h, int(p_x1):int(p_x2)]
-                            
-                            print(f"crop shape : {roi.shape}")
-                            cv.imshow('cropped', roi)
-                            cv.imwrite(f'{folder_name}\\{img_name}.png', roi)
-                            print("--------------이미지 저장--------------")
+                            img_save(roi, folder_name, img_name)
                         
                         
                     ## 일반적인 경우(가운데)
@@ -147,27 +124,20 @@ def drag_img(event, x, y, flags, param):
                         print("---------------가운데---------------")
                         
                         roi = img[y1:y1+h, int(p_x1):int(p_x2)]
-                        
-                        print(f"crop shape : {roi.shape}")
-                        cv.imshow('cropped', roi)
-                        cv.imwrite(f'{folder_name}\\{img_name}.png', roi)
-                        print("--------------이미지 저장--------------")
+                        img_save(roi, folder_name, img_name)
 
+## 저장 경로
+face = r'C:\Users\yhunkim\Desktop\cropped\face'
+upper = r'C:\Users\yhunkim\Desktop\cropped\upper'
+body = r'C:\Users\yhunkim\Desktop\cropped\body'
 
+folders = [face, upper, body]
 
-
-
+## 경로 이동
 path = r"C:\Users\yhunkim\Desktop\cropped"
 os.chdir(path)
 
-# img_name = "ZEPETO_CAPTURE_-8585144551944732107"
-# img = cv.imread("ZEPETO_CAPTURE_-8585144551944732107.png")
-# cv.imshow('img', img)
-# for folder_name in folders:
-#     cv.setMouseCallback('img', drag_img)
-
-#     cv.waitKey()
-
+## 추출
 images = glob.glob("*.png")
 cnt = len(images)
 for i in range(len(images)):
