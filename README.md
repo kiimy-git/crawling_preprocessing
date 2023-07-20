@@ -26,8 +26,11 @@
 1. 한국인의 얼굴 데이터셋으로 학습하지 않음
 2. 결과적으로 제대로 구분하지 못 함
 
+### Iruda Chat
+1. [Iruda_Chat](https://nutty.chat/login)
+2. [ChatGPT_Iruda_Chat_Code](scraping_py/iruda_chat.py)
 
-[Crawling 코드](scraping_py/netflix)
+[Web_Crawling 코드](scraping_py/netflix)
 
 [사용한 라이브러리 및 API](scraping_py/useful_code)
 
